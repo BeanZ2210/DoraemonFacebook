@@ -1,12 +1,11 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { exec } = require('child_process');
+const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
-
 const express = require('express');
+
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
 app.listen(3000, () => console.log('🌐 Web server running.'));
-
 
 const client = new Client({
   intents: [
@@ -16,26 +15,43 @@ const client = new Client({
   ]
 });
 
-
 client.once('ready', () => {
-  console.log(`Working: ${client.user.tag}`);
+  console.log(`✅ Bot is ready: ${client.user.tag}`);
 });
 
 client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
-  // Chỉ xử lý link Facebook
-  const url = message.content.split(/\s+/).find(word =>
+  const content = message.content.toLowerCase();
+
+  // ✅ Trả lời khi ai đó nói "hello"
+  if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao',].some(w => content.includes(w))) {
+  await message.reply(`👋 Chào ${message.author.username}!`);
+}
+  if (content === 'ngu' || content.includes('ngu')) {
+    await message.reply(`${message.author.username}! Ngu ngon`);
+    return;
+  }
+  if (content === 'gg' || content.includes('gg') || content === 'GG' || content.includes('GG') || content === 'Gg' || content.includes('Gg')) {
+    await message.reply(`GG! Hôm nay chơi tốt lắm`);
+    return;
+  }
+
+  // ✅ Tìm URL Facebook trong tin nhắn
+  const url = content.split(/\s+/).find(word =>
     word.includes('facebook.com') || word.includes('fb.watch')
   );
 
   if (url) {
-    const command = `yt-dlp -f best[ext=mp4]/best -o fb_video.mp4 "${url}"`;
 
-    exec(command, async (err, stdout, stderr) => {
-      if (err || !fs.existsSync('fb_video.mp4')) {
-        console.error('❌ Tải thất bại:', stderr || err.message);
-        return; // Không gửi gì nếu lỗi
+    try {
+      await ytdlp(url, {
+        output: 'fb_video.mp4',
+        format: 'best[ext=mp4]/best',
+      });
+
+      if (!fs.existsSync('fb_video.mp4')) {
+
       }
 
       const stats = fs.statSync('fb_video.mp4');
@@ -43,10 +59,12 @@ client.on('messageCreate', async (message) => {
 
       if (fileSizeMB <= 24.5) {
         await message.channel.send({ files: ['fb_video.mp4'] });
+      } else {
       }
 
-      fs.unlinkSync('fb_video.mp4'); // Xóa file sau khi gửi hoặc bỏ qua
-    });
+      fs.unlinkSync('fb_video.mp4');
+    } catch (err) {
+    }
   }
 });
 
