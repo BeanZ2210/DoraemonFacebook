@@ -195,7 +195,7 @@ const chao=[
     }
   }
 });
-if (message.content === '!stopbot' && message.author.id === '627375595487232002) {
+if (message.content === '!stopbot' && message.author.id === '627375595487232002') {
   process.exit(0); // Dừng chương trình Node.js
 }
 
