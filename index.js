@@ -86,10 +86,22 @@ const chao=[
         "Thua cái đổi thừa"
       ];
     const loikhuyen=[
-        "Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết",
+        'Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết';
         "Doraemon khuyên bạn đừng nên mở mắt khi đang ngủ",
         "Ngủ đủ 8 tiếng 1 ngày sẽ tăng cường kĩ năng đấu súng của bạn",
         "Kết hợp cánh tay và cổ tay khi di chuột sẽ tăng độ cơ động và chính xác",
+        'Nếu buồn, hãy ăn bánh rán. Nếu vẫn buồn thì ăn thêm cái nữa.',
+        'Cứ đi ngủ đi, biết đâu ngày mai tỉnh dậy bạn lại thành nhân vật chính.',
+        'Hôm nay thua không sao, vì Nobita còn thua suốt mà vẫn sống vui vẻ.',
+        'Bạn không cần giỏi, chỉ cần dễ thương như Doraemon(me) là đủ rồi.',
+        'Cuộc sống giống như túi thần kỳ vì không biết rút ra cái gì, nên luôn phải tự xử',
+        'Thắng hay thua không quan trọng, miễn là có lý do để ngủ sớm hehe',
+        'Nếu bạn cảm thấy vô dụng, hãy nhớ là ống nhòm phía sau lưng vẫn dùng được'
+        'Bạn nghĩ mình không có vai trò? Nếu vậy thì bạn giống như dây sạc,ai cũng chỉ nhớ tới khi hết pin',
+        'Bạn không cần phải tỏa sáng, miễn là bạn không làm người khác cháy nắng',
+        'Đôi khi chỉ cần bạn tồn tại, là đủ để người khác không thấy cô đơn rồi',
+        'Cây bút gãy vẫn có thể làm phi tiêu, miễn là đúng người dùng nó'
+        'Nếu bạn không nổi bật, thì bạn cũng giống như một con ốc vít,nhỏ nhưng thiếu là banh hết',
     ];
   const randomchao = chao[Math.floor(Math.random() * chao.length)];
   const randomVo = vao[Math.floor(Math.random() * vao.length)];
