@@ -30,7 +30,7 @@ const chao=[
   (message) => `Hí lâu ní ${message.author.username}`,
   "Vui nhỉ :>",
   "Chắc là lần đầu mình gặp mặt!",
-  "Lâu rồi không gặp!"
+  "Lâu rồi không gặp!",
 ];
   const vao=[
     (message) => `Zô dới ${message.author.username} kìa mấy ní`,
