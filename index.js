@@ -86,7 +86,7 @@ const chao=[
         "Thua cái đổi thừa"
       ];
     const loikhuyen=[
-        'Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết';
+        'Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết',
         "Doraemon khuyên bạn đừng nên mở mắt khi đang ngủ",
         "Ngủ đủ 8 tiếng 1 ngày sẽ tăng cường kĩ năng đấu súng của bạn",
         "Kết hợp cánh tay và cổ tay khi di chuột sẽ tăng độ cơ động và chính xác",
