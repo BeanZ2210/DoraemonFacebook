@@ -84,6 +84,7 @@ const chao=[
         "Xin cái hẹn",
         "~Pew ~Pew",
         "Thua cái đổi thừa"
+      ];
     const loikhuyen=[
         "Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết",
         "Doraemon khuyên bạn đừng nên mở mắt khi đang ngủ",
@@ -127,7 +128,7 @@ const chao=[
   await message.reply(randomVo);
 }
   else if (['ACE','hay'].some(w => content.includes(w))) {
-  await message.reply(randomkhen);
+  await message.reply(randomKhen);
 }
   else if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
     message.reply(randomtagv);
@@ -139,7 +140,7 @@ const chao=[
     await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
     return;
   }
-  else if(content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien'){
+  else if(content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien')){
     await message.reply(randomloikhuyen);
     return;
   }
@@ -175,6 +176,7 @@ const chao=[
       if (fileSizeMB <= 24.5) {
         await message.channel.send({ files: ['fb_video.mp4'] });
       } else {
+        fs.unlinkSync('fb_video.mp4');
       }
 
       fs.unlinkSync('fb_video.mp4');
