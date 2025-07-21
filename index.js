@@ -23,17 +23,132 @@ client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
 
   const content = message.content.toLowerCase();
-
+const chao=[
+  (message) => `Hello! ${message.author.username}`,
+  (message) => `Chào! ${message.author.username}`,
+  (message) => `Hi! ${message.author.username}`,
+  (message) => `Hí lâu ní ${message.author.username}`,
+  "Vui nhỉ :>",
+  "Chắc là lần đầu mình gặp mặt!",
+  "Lâu rồi không gặp!"
+];
+  const vao=[
+    (message) => `Zô dới ${message.author.username} kìa mấy ní`,
+    "Doraemon tới chơi chung nè",
+    "Zô đâu dậy!",
+    "Cho chơi ké đi",
+    "Game nào để còn vào",
+    "Thắng thua là chuyện bình thường , đừng buồn :(",
+    "Zô từ chiều!",
+  ];
+    const ngu=[
+    "Good night luôn!",
+    "Buồn rồi chứ gì :>",
+    (message) => `${message.author.username} ngu quai`,
+    "Ngủ đi khuya lắm rồi!",
+  ];
+    const gg=[
+      "GG! Hôm nay chơi tốt lắm",
+      "GG! Mọi phiền muộn sẽ biến tan sau một giấc ngủ",
+      "GG! Well Play",
+      "GG! Nay hoặc Mai là một ngày tuyệt, đừng để cảm giác buồn bã chiếm lấy cả hai",
+      "GG! Thiếu tui thiếu vui",
+      "Ai lấy túi thần kỳ mất tiêu rồi ta",
+      "Gi Gi mít tơ bít",
+  ];
+    const khen=[
+      "Ghê dợ",
+      "Thua tui có chút xíu à",
+      "Chuyện thường ngày",
+      "Quao",
+      "Hay đó",
+      "Được đó chứ",
+  ];
+    const troll=[
+      "Hay là mình giao lưu tí đi",
+     (message) => `Ô, chúc mừng ${message.author.username} Top #01 TD`,
+      (message) => `Doraemon > ${message.author.username}`,
+    ];
+    const tag=[
+      "Gì á",
+      "Quát đu du quăn",
+      "Muốn gặp Dorami hả","Đời tôi cô đơn nên yêu ai cũng cô đơn",
+      "Mượn bảo bối gì nà",
+    ];
+    const tagvo=[
+        "Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai",
+    ];
+    const tagvar=[
+        "Muốn sao đây",
+        "Đổ xăng hay đổ máu",
+        "Xin cái hẹn",
+        "~Pew ~Pew",
+        "Thua cái đổi thừa"
+    const loikhuyen=[
+        "Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết",
+        "Doraemon khuyên bạn đừng nên mở mắt khi đang ngủ",
+        "Ngủ đủ 8 tiếng 1 ngày sẽ tăng cường kĩ năng đấu súng của bạn",
+        "Kết hợp cánh tay và cổ tay khi di chuột sẽ tăng độ cơ động và chính xác",
+    ];
+  const randomchao = chao[Math.floor(Math.random() * chao.length)];
+  const randomVo = vao[Math.floor(Math.random() * vao.length)];
+  const randomGG = gg[Math.floor(Math.random() * gg.length)];
+  const randomNgu = ngu[Math.floor(Math.random() * ngu.length)];
+  const randomKhen = khen[Math.floor(Math.random() * khen.length)];
+  const randomTr = troll[Math.floor(Math.random() * troll.length)];
+  const randomtag = tag[Math.floor(Math.random() * tag.length)];
+  const randomtagv = tagvo[Math.floor(Math.random() * tagvo.length)];
+  const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
+  const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
+  
   // ✅ Trả lời khi ai đó nói "hello"
-  if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao',].some(w => content.includes(w))) {
-  await message.reply(`👋 Chào ${message.author.username}!`);
+  if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
+    message.reply(randomtagv);
+  }
+  else if (message.mentions.has(client.user) {
+    message.reply(randomtag);
+  }
+    else if (message.mentions.has(client.user && ['ngu','ga','non','noob','ngoc','ngok','chicken','gà'].some(w => content.includes(w))) {
+    message.reply(randomtagvar);
+  }
+  
+  else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao',].some(w => content.includes(w))) {
+  await message.reply(randomchao);
 }
-  if (content === 'ngu' || content.includes('ngu')) {
-    await message.reply(`${message.author.username}! Ngu ngon`);
+ else if (content === 'ngu' || content.includes('ngu')) {
+    await message.reply(randomNgu);
     return;
   }
-  if (content === 'gg' || content.includes('gg') || content === 'GG' || content.includes('GG') || content === 'Gg' || content.includes('Gg')) {
-    await message.reply(`GG! Hôm nay chơi tốt lắm`);
+  else if (content === 'gg' || content.includes('gg') || content === 'GG' || content.includes('GG') || content === 'Gg' || content.includes('Gg')) {
+    await message.reply(randomGG);
+    return;
+  }
+  else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
+  await message.reply(randomVo);
+}
+  else if (['ACE','hay'].some(w => content.includes(w))) {
+  await message.reply(randomkhen);
+}
+  else if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
+    message.reply(randomtagv);
+  }
+  else if (message.mentions.has(client.user) {
+    message.reply(randomtag);
+  }
+  else if (content === 'momo' || content.includes('momo') || content === 'ck' || content.includes('ck')) {
+    await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
+    return;
+  }
+  else if(content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien'){
+    await message.reply(randomloikhuyen);
+    return;
+  }
+  else if(content === 'yeu' || content === 'iu'){
+    await message.reply(`Đời tôi cô đơn nên yêu ai cũng cô đơn`);
+    return;
+  }
+  else if(content.includes('ew') || content === 'oe' || content === 'oi'){
+    await message.reply(`Ghê dậy luôn á hả gái`);
     return;
   }
 
