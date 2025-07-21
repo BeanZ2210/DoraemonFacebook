@@ -119,12 +119,15 @@ const chao=[
   if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
     message.reply(randomtagv);
   }
-  else if (message.mentions.has(client.user) {
+  else if (message.mentions.has(client.user)) {
     message.reply(randomtag);
   }
-    else if (message.mentions.has(client.user && ['ngu','ga','non','noob','ngoc','ngok','chicken','gà'].some(w => content.includes(w))) {
-    message.reply(randomtagvar);
-  }
+    else if (
+  message.mentions.has(client.user) &&
+  ['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))
+) {
+  message.reply(randomtagvar);
+}
   
   else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao',].some(w => content.includes(w))) {
   await message.reply(randomchao);
