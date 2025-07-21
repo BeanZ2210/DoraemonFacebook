@@ -107,65 +107,70 @@ const chao=[
   'Nếu bạn không nổi bật, thì bạn cũng giống như một con ốc vít – nhỏ nhưng thiếu là banh hết'
 ];
 
-  const randomchao = chao[Math.floor(Math.random() * chao.length)];
-  const randomVo = vao[Math.floor(Math.random() * vao.length)];
-  const randomGG = gg[Math.floor(Math.random() * gg.length)];
-  const randomNgu = ngu[Math.floor(Math.random() * ngu.length)];
-  const randomKhen = khen[Math.floor(Math.random() * khen.length)];
-  const randomTr = troll[Math.floor(Math.random() * troll.length)];
-  const randomtag = tag[Math.floor(Math.random() * tag.length)];
-  const randomtagv = tagvo[Math.floor(Math.random() * tagvo.length)];
-  const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
-  const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
-  
-  // ✅ Trả lời khi ai đó nói "hello"
-  if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
-    message.reply(randomtagv);
-  }
-  else if (message.mentions.has(client.user)) {
-    message.reply(randomtag);
-  }
-    else if (
+  function getReply(message, item) {
+  return typeof item === 'function' ? item(message) : item;
+}
+
+const randomchao = chao[Math.floor(Math.random() * chao.length)];
+const randomVo = vao[Math.floor(Math.random() * vao.length)];
+const randomGG = gg[Math.floor(Math.random() * gg.length)];
+const randomNgu = ngu[Math.floor(Math.random() * ngu.length)];
+const randomKhen = khen[Math.floor(Math.random() * khen.length)];
+const randomTr = troll[Math.floor(Math.random() * troll.length)];
+const randomtag = tag[Math.floor(Math.random() * tag.length)];
+const randomtagv = tagvo[Math.floor(Math.random() * tagvo.length)];
+const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
+const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
+
+if (
+  message.mentions.has(client.user) &&
+  ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))
+) {
+  await message.reply(getReply(message, randomtagv));
+}
+else if (
   message.mentions.has(client.user) &&
   ['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))
 ) {
-  message.reply(randomtagvar);
+  await message.reply(getReply(message, randomtagvar));
 }
-  
-  else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao',].some(w => content.includes(w))) {
-  await message.reply(randomchao);
+else if (message.mentions.has(client.user)) {
+  await message.reply(getReply(message, randomtag));
 }
- else if (content === 'ngu' || content.includes('ngu')) {
-    await message.reply(randomNgu);
-    return;
-  }
-  else if (content === 'gg' || content.includes('gg') || content === 'GG' || content.includes('GG') || content === 'Gg' || content.includes('Gg')) {
-    await message.reply(randomGG);
-    return;
-  }
-  else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
-  await message.reply(randomVo);
-  }
-  else if (['ACE','hay'].some(w => content.includes(w))) {
-  await message.reply(randomKhen);
-  }
-  
-  else if (content === 'momo' || content.includes('momo') || content === 'ck' || content.includes('ck')) {
-    await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
-    return;
-  }
-  else if(content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien')){
-    await message.reply(randomloikhuyen);
-    return;
-  }
-  else if(content === 'yeu' || content === 'iu'){
-    await message.reply(`Đời tôi cô đơn nên yêu ai cũng cô đơn`);
-    return;
-  }
-  else if(content.includes('ew') || content === 'oe' || content === 'oi'){
-    await message.reply(`Ghê dậy luôn á hả gái`);
-    return;
-  }
+else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomchao));
+}
+else if (content.includes('ngu')) {
+  await message.reply(getReply(message, randomNgu));
+  return;
+}
+else if (['gg', 'GG', 'Gg'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomGG));
+  return;
+}
+else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomVo));
+}
+else if (['ACE','hay'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomKhen));
+}
+else if (content.includes('momo') || content.includes('ck')) {
+  await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
+  return;
+}
+else if (content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien')) {
+  await message.reply(getReply(message, randomloikhuyen));
+  return;
+}
+else if (content === 'yeu' || content === 'iu') {
+  await message.reply(`Đời tôi cô đơn nên yêu ai cũng cô đơn`);
+  return;
+}
+else if (content.includes('ew') || content === 'oe' || content === 'oi') {
+  await message.reply(`Ghê dậy luôn á hả gái`);
+  return;
+}
+
 
   // ✅ Tìm URL Facebook trong tin nhắn
   const url = content.split(/\s+/).find(word =>
