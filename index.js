@@ -142,16 +142,11 @@ const chao=[
   }
   else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
   await message.reply(randomVo);
-}
+  }
   else if (['ACE','hay'].some(w => content.includes(w))) {
   await message.reply(randomKhen);
-}
-  else if (message.mentions.has(client.user) && ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
-    message.reply(randomtagv);
   }
-  else if (message.mentions.has(client.user) {
-    message.reply(randomtag);
-  }
+  
   else if (content === 'momo' || content.includes('momo') || content === 'ck' || content.includes('ck')) {
     await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
     return;
