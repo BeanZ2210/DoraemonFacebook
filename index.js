@@ -179,6 +179,36 @@ const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
+  // ✅ Tìm URL Facebook trong tin nhắn
+ const urlMatch = message.content.match(/https?:\/\/(?:www\.)?facebook\.com\/[^\s]+/i);
+const url = urlMatch ? urlMatch[0] : null;
+
+
+  if (url) {
+
+    try {
+      await ytdlp(url, {
+        output: 'fb_video.mp4',
+        format: 'best[ext=mp4]/best',
+      });
+
+      if (!fs.existsSync('fb_video.mp4')) {
+
+      }
+
+      const stats = fs.statSync('fb_video.mp4');
+      const fileSizeMB = stats.size / (1024 * 1024);
+
+      if (fileSizeMB <= 24.5) {
+        await message.channel.send({ files: ['fb_video.mp4'] });
+      } else {
+        fs.unlinkSync('fb_video.mp4');
+      }
+
+      fs.unlinkSync('fb_video.mp4');
+    } catch (err) {
+    }
+  }
   if (message.content.startsWith('!ask ')) {
     const prompt = message.content.slice(5).trim();
     const reply = await askGemini(prompt);
@@ -307,38 +337,6 @@ await message.reply(randomtagvar);
   return;
 }
 
-
-
-  // ✅ Tìm URL Facebook trong tin nhắn
- const urlMatch = message.content.match(/https?:\/\/(?:www\.)?facebook\.com\/[^\s]+/i);
-const url = urlMatch ? urlMatch[0] : null;
-
-
-  if (url) {
-
-    try {
-      await ytdlp(url, {
-        output: 'fb_video.mp4',
-        format: 'best[ext=mp4]/best',
-      });
-
-      if (!fs.existsSync('fb_video.mp4')) {
-
-      }
-
-      const stats = fs.statSync('fb_video.mp4');
-      const fileSizeMB = stats.size / (1024 * 1024);
-
-      if (fileSizeMB <= 24.5) {
-        await message.channel.send({ files: ['fb_video.mp4'] });
-      } else {
-        fs.unlinkSync('fb_video.mp4');
-      }
-
-      fs.unlinkSync('fb_video.mp4');
-    } catch (err) {
-    }
-  }
 });
 
 
