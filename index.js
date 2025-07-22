@@ -25,6 +25,7 @@ client.on('messageCreate', async (message) => {
   process.exit(0); // Dừng chương trình Node.js
 }
   const hasThreeDigits = /\d{3}/.test(message.content);
+  const match = message.content.toLowerCase().match(/^(do+|vo+|zo+\^?|vao+)$/);
   const content = message.content.toLowerCase();
   const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+(?:k)?)/);
   const mentioned = message.mentions.members.first();
@@ -179,7 +180,8 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   await message.reply(getReply(message, randomtagvar));
         return;
 }
-   else if (['zo','Zo','vo','gou','vao','zao','go','may'].some(w => content.includes(w))) {
+   else if (match) {
+    const word = match[1];
   await message.reply(getReply(message, randomtagv));
      return;
 }  
