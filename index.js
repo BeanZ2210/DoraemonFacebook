@@ -194,16 +194,16 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
           await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
     return;
      }
-  else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
-    await message.reply(randomtagv);
-  }
+  else if (/^[a-zA-Z]{3}\d{3}$/.test(message.content)) {
+  await message.reply(randomtagv);
+}
     else {
   await message.reply(getReply(message, randomtag));
       return;
 }
 }
   //---------
-else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
+else if (/^[a-zA-Z]{3}\d{3}$/.test(message.content)) {
     await message.reply(`Zô dới ${getName(message)} kìa mấy ní`);
   }
 else if (message.content === '!info') {
