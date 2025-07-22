@@ -129,6 +129,7 @@ const chao=[
     'Tốc độ chạy: thông thường 5 m/giây. Tối đa 129,3 km/giờ',
     'Gõ !loikhuyen để nhận lời khuyên.',
     'Gọi Doraemon nếu bạn cần cứu!',
+    ];
   function getReply(message, item) {
   return typeof item === 'function' ? item(message) : item;
 }
