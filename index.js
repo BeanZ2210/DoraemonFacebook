@@ -24,7 +24,7 @@ client.on('messageCreate', async (message) => {
   if (message.content === '!stopbot' && message.author.id === '627375595487232002') {
   process.exit(0); // Dừng chương trình Node.js
 }
-
+  const hasThreeDigits = /\d{3}/.test(message.content);
   const content = message.content.toLowerCase();
 const chao=[
   (message) => `Hello! ${message.author.username}`,
@@ -104,7 +104,15 @@ const chao=[
   'Bạn không cần phải tỏa sáng, miễn là bạn không làm người khác cháy nắng',
   'Đôi khi chỉ cần bạn tồn tại, là đủ để người khác không thấy cô đơn rồi',
   'Cây bút gãy vẫn có thể làm phi tiêu, miễn là đúng người dùng nó',
-  'Nếu bạn không nổi bật, thì bạn cũng giống như một con ốc vít – nhỏ nhưng thiếu là banh hết'
+  'Nếu bạn không nổi bật, thì bạn cũng giống như một con ốc vít,nhỏ nhưng thiếu là banh hết'
+];
+   const chui=[
+     'Có cố gắng'
+     'Hay là ăn tí bánh rán đi'
+     'Đâu ai là hoàn hảo'
+     'Không có gì phải buồn'
+     'Vô địch'
+     'いちばんいけないのは じぶんなんかだめだと思いこむことだよ'
 ];
 
   function getReply(message, item) {
@@ -121,26 +129,34 @@ const randomtag = tag[Math.floor(Math.random() * tag.length)];
 const randomtagv = tagvo[Math.floor(Math.random() * tagvo.length)];
 const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
 const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
+const randomchui = chui[Math.floor(Math.random() * chui.length)];
 
-if (
-  message.mentions.has(client.user) &&
-  ['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))
-) {
-  await message.reply(getReply(message, randomtagv));
-}
-else if (
-  message.mentions.has(client.user) &&
-  ['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))
-) {
-  await message.reply(getReply(message, randomtagvar));
-}
-else if (message.mentions.has(client.user)) {
-  await message.reply(getReply(message, randomtag));
-}
-else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
+  if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchao));
 }
-else if (content.includes('ngu')) {
+  else if(message.mentions.has(client.user)){
+      if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomtagvar));
+}
+   else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
+  await message.reply(getReply(message, randomtagv));
+}  
+    else if (hasThreeDigits) {
+    await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
+  }
+    
+    else  {
+  await message.reply(getReply(message, randomtag));
+}
+}
+  //---------
+else if (hasThreeDigits) {
+    await message.reply(`Zô dới ${message.author.username} kìa mấy ní`);
+  }
+else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(ư))) {
+  await message.reply(getReply(message, randomchui));
+}
+ else if (content.includes('ngu')) {
   await message.reply(getReply(message, randomNgu));
   return;
 }
