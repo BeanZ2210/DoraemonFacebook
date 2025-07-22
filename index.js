@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
-const { askAI } = require('./huggingface');
+const { askAI } = require('./AI');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
