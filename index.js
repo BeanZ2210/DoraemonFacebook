@@ -6,7 +6,9 @@ const express = require('express');
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
 app.listen(3000, () => console.log('🌐 Web server running.'));
-
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -179,19 +181,22 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
 	
-
+await message.channel.sendTyping(); 
    if (content.startsWith("!ask ")) {
-    await message.reply('Tính năng đang được phát triển');
-  }
-   else if (message.attachments.size > 0) {
-    const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
+  await message.reply('Tính năng đang được phát triển');
+  return;
+}
 
-    if (hasImage) {
-      await message.reply(randomreact);
-      return;
-    }
+else if (message.attachments.size > 0) {
+  const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
+  if (hasImage) {
+	  await delay(2000);
+    await message.reply(randomreact);
+    return;
   }
- else if (moneyMatch) {
+}
+
+else if (moneyMatch) {
   let amount = moneyMatch[2];
 
   if (!amount.includes('k') && parseInt(amount) >= 1000) {
@@ -201,110 +206,151 @@ const randomreact = react[Math.floor(Math.random() * react.length)];
   if (mentioned && mentioned.id !== client.user.id) {
     const targetName = mentioned.nickname || mentioned?.user.username || 'ai đó';
     await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${getName(message)}!`);
-    return;
   } else {
     await message.reply(`💸 Đã chuyển cho ${getName(message)} số tiền ${amount}`);
+  }
+  return;
+}
+
+else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].includes(content.trim().toLowerCase())) {
+  await message.channel.sendTyping();
+  setTimeout(async () => {
+    await message.reply(getReply(message, randomchao));
+  }, 2000);
+  return;
+}
+
+else if (message.mentions.has(client.user) || doraemonNames.some(name => content.includes(name))) {
+  if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
+	  await delay(2000);
+    await message.reply(getReply(message, randomtagvar));
     return;
   }
 
+  else if (match) {
+	  await delay(2000);
+    await message.reply(getReply(message, randomtagv));
     return;
-}
-    
-  else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
-  await message.reply(getReply(message, randomchao));
+  }
+
+  else if (['xin','muon','mượn'].some(w => content.includes(w)) &&
+           ['valo','valorant','valỏ','acc'].some(w => content.includes(w))) {
+	  await delay(2000);
+    await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);
     return;
-}
-    
-  else if (message.mentions.has(client.user) || doraemonNames.some(name => content.includes(name))) {
-      if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
-  await message.reply(getReply(message, randomtagvar));
-        return;
-}
-   else if (match) {
-    const word = match[1];
-  await message.reply(getReply(message, randomtagv));
-     return;
-}  
-   else if(['xin','muon','mượn'].some(w => content.includes(w))){
-         if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
-         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
-           return;
-  }}
-  else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
-          await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
+  }
+
+  else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))) {
+	  await delay(2000);
+    await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
     return;
-     }
+  }
+
   else if (/^[a-zA-Z]{3}\d{3}$/.test(message.content)) {
-  await message.reply(randomtagv);
-    
-}
-    else if(isQuestion){
-      await message.reply(getReply(message, randomAnswer));
+	  await delay(2000);
+    await message.reply(randomtagv);
     return;
+  }
 
+  else if (isQuestion) {
+	  await delay(2000);
+    await message.reply(getReply(message, randomAnswer));
+    return;
   }
-    else {
-  await message.reply(getReply(message, randomtag));
-      return;
+
+  else {
+	  await delay(2000);
+    await message.reply(getReply(message, randomtag));
+    return;
+  }
 }
-}
-  //---------
+
 else if (/^[a-zA-Z]{3}\d{3}$/.test(message.content)) {
-    await message.reply(`Zô dới ${getName(message)} kìa mấy ní`);
-  }
+	await delay(2000);
+  await message.reply(`Zô dới ${getName(message)} kìa mấy ní`);
+  return;
+}
+
 else if (message.content === '!info') {
+	await delay(2000);
   const formatted = info.join('\n');
   await message.channel.send(formatted);
   return;
 }
-else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(w))) {
+
+else if (['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(w))) {
+	await delay(2000);
   await message.reply(getReply(message, randomchui));
   return;
 }
- else if (content.includes('ngu')) {
+
+else if (content.includes('ngu')) {
+	await delay(2000);
   await message.reply(getReply(message, randomNgu));
   return;
 }
+
 else if (['gg', 'GG', 'Gg'].some(w => content.includes(w))) {
+	await delay(2000);
   await message.reply(getReply(message, randomGG));
   return;
 }
+
 else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
+	await delay(2000);
   await message.reply(getReply(message, randomVo));
   return;
 }
+
 else if (['ACE','hay'].some(w => content.includes(w))) {
+	await delay(2000);
   await message.reply(getReply(message, randomKhen));
   return;
 }
+
 else if (content.includes('momo') || content.includes('ck')) {
+	await delay(2000);
   await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
   return;
 }
+
 else if (content === '!loikhuyen' || content.includes('thua') || content.includes('dong') || content.includes('vien')) {
+	await delay(2000);
   await message.reply(getReply(message, randomloikhuyen));
   return;
 }
+
 else if (content === 'yeu' || content === 'iu') {
+	await delay(2000);
   await message.reply(`Đời tôi cô đơn nên yêu ai cũng cô đơn`);
   return;
 }
+
 else if (content.includes('ew') || content === 'oe' || content === 'oi') {
+	await delay(2000);
   await message.reply(`Ghê dậy luôn á hả gái`);
   return;
 }
-else if([':0',':3',':)',':(',':D',':v',';v','xd'].some(w => content.includes(w))){
-await message.reply(`:v`);
+
+else if ([':0', ':3', ':)', ':(', ':D', ':v', ';v', 'xd'].some(w => content.includes(w))) {
+	await delay(2000);
+  await message.reply(`:v`);
   return;
 }
-else if(content.includes('3==D') || content === '<=3'){
-await message.reply(`?`);
+
+else if (content.includes('3==D') || content === '<=3') {
+	await delay(2000);
+  await message.reply(`?`);
   return;
 }
-  else if(content.includes('?')){
-await message.reply(randomtagvar);
+
+else if (content.includes('?')) {
+	await delay(2000);
+  await message.reply(randomtagvar);
   return;
 }
+
+
 
 
 
