@@ -30,6 +30,7 @@ client.on('messageCreate', async (message) => {
   const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+(?:k)?)/);
   const mentioned = message.mentions.members.first();
   const senderName = message.member?.nickname || message.author.username;
+  const isQuestion = content.endsWith('?') || content.includes(' không') || content.includes(' à') || content.includes(' hả') || content.includes(' ha') || content.includes(' khong' || content.includes(' 0') || content.includes(' ko'));
   function getName(message) {
   return message.member?.nickname || message.author.username;
 }
@@ -139,6 +140,27 @@ const chao=[
     'Gõ !loikhuyen để nhận lời khuyên.',
     'Gọi Doraemon nếu bạn cần cứu!',
     ];
+  const answer = [
+  "Có",
+  "Không",
+  "Tùy bạn",
+  "Chắc là vậy",
+  "Không chắc đâu",
+  "Tui không biết nữa",
+  "Mon nghĩ là bạn",
+];
+  const react=[
+  "Wow",
+  "Nhìn cưng vậy",
+  "Giống tui nhỉ",
+  "Đẹp trai",
+  "Có nét giống tổng thống",
+  "Xin info giùm",
+  "Ý nghĩa thật",
+  "Hôi lông",
+  "Còn phần 2 không",
+  "Thật tuyệt",
+];
   function getReply(message, item) {
   return typeof item === 'function' ? item(message) : item;
 }
@@ -154,8 +176,17 @@ const randomtagv = tagvo[Math.floor(Math.random() * tagvo.length)];
 const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
 const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
+const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
+const randomreact = react[Math.floor(Math.random() * react.length)];
+  if (message.attachments.size > 0) {
+    const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
 
-  if (moneyMatch) {
+    if (hasImage) {
+      await message.reply(randomreact);
+      return;
+    }
+  }
+ else if (moneyMatch) {
   let amount = moneyMatch[2];
 
   if (!amount.includes('k') && parseInt(amount) >= 1000) {
@@ -200,7 +231,13 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
      }
   else if (/^[a-zA-Z]{3}\d{3}$/.test(message.content)) {
   await message.reply(randomtagv);
+    
 }
+    else if(isQuestion){
+      await message.reply(getReply(message, randomAnswer));
+    return;
+
+  }
     else {
   await message.reply(getReply(message, randomtag));
       return;
@@ -251,6 +288,19 @@ else if (content.includes('ew') || content === 'oe' || content === 'oi') {
   await message.reply(`Ghê dậy luôn á hả gái`);
   return;
 }
+else if([':0',':3',':)',':(',':D',':v',';v','xd'].some(w => content.includes(w))){
+await message.reply(`:v`);
+  return;
+}
+else if(content.includes('3==D') || content === '<=3'){
+await message.reply(`?`);
+  return;
+}
+  else if(content.includes('?')){
+await message.reply(randomtagvar);
+  return;
+}
+
 
 
   // ✅ Tìm URL Facebook trong tin nhắn
