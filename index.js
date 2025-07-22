@@ -370,9 +370,9 @@ else if (content.includes('?')) {
 
 
   // ✅ Tìm URL Facebook trong tin nhắn
-  const url = content.split(/\s+/).find(word =>
-    word.includes('facebook.com') || word.includes('fb.watch')
-  );
+  const url = content.split(/\s+/).filter(word =>
+  word.includes('facebook.com') || word.includes('fb.watch')
+);
 
   if (url) {
 
