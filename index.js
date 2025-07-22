@@ -107,14 +107,24 @@ const chao=[
   'Nếu bạn không nổi bật, thì bạn cũng giống như một con ốc vít,nhỏ nhưng thiếu là banh hết'
 ];
    const chui=[
-     'Có cố gắng'
-     'Hay là ăn tí bánh rán đi'
-     'Đâu ai là hoàn hảo'
-     'Không có gì phải buồn'
-     'Vô địch'
-     'いちばんいけないのは じぶんなんかだめだと思いこむことだよ'
+     'Có cố gắng',
+     'Hay là ăn tí bánh rán đi',
+     'Đâu ai là hoàn hảo',
+     'Không có gì phải buồn',
+     'Vô địch',
+     'いちばんいけないのは じぶんなんかだめだと思いこむことだよ',
 ];
-
+  const info=[
+    'Xin chào đây là Doraemon mang mã số VN8226 đến từ Vietnam'
+    'Chiều cao: 129,3 cm',
+    'Cân nặng: 129,3 kg',
+    'Nhảy cao: 129,3 cm (khi thấy chuột)',
+    'Công suất tối đa: 129.3 bhp',
+    'Vòng bụng: 129,3 cm',
+    'Đường kính chân: 129,3 mm',
+    'Tốc độ chạy: thông thường 5 m/giây. Tối đa 129,3 km/giờ',
+    'Gõ !loikhuyen để nhận lời khuyên.',
+    'Gọi Doraemon nếu bạn cần cứu!',
   function getReply(message, item) {
   return typeof item === 'function' ? item(message) : item;
 }
@@ -134,7 +144,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchao));
 }
-  else if(message.mentions.has(client.user)){
+  else if (message.mentions.has(client.user) || message.content.toLowerCase().includes('doraemon')) {
       if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagvar));
 }
@@ -153,6 +163,10 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
 else if (hasThreeDigits) {
     await message.reply(`Zô dới ${message.author.username} kìa mấy ní`);
   }
+else if (message.content === '!info') {
+  const formatted = info.join('\n');
+  await message.channel.send(formatted);
+}
 else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(ư))) {
   await message.reply(getReply(message, randomchui));
 }
