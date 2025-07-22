@@ -174,7 +174,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
    else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagv));
 }  
-    else if (/[a-zA-Z]{3}\d{3}/.test(message.content) {
+    else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
     await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
   }
      else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
