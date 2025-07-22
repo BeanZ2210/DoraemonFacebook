@@ -98,7 +98,7 @@ const chao=[
         "Đổ xăng hay đổ máu",
         "Xin cái hẹn",
         "~Pew ~Pew",
-        "Thua cái đổi thừa"
+        "Thua cái đổi thừa",
         "Hôi lông",
       ];
     const loikhuyen = [
