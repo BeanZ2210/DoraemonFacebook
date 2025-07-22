@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
+const { askGemini } = require('./gemini');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
@@ -178,7 +179,12 @@ const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
-  if (message.attachments.size > 0) {
+  if (message.content.startsWith('!ask ')) {
+    const prompt = message.content.slice(5).trim();
+    const reply = await askGemini(prompt);
+    await message.reply(reply);
+  }
+  else if (message.attachments.size > 0) {
     const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
 
     if (hasImage) {
