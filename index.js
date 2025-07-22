@@ -181,15 +181,15 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   await message.reply(getReply(message, randomtagv));
      return;
 }  
+   else if(['xin','muon','mượn'].some(w => content.includes(w))){
+         if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
+         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
+           return;
+  }}
   else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
           await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
     return;
      }
-  else if(['xin','muon','mượn'].some(w => content.includes(w))){
-         if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
-         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
-           return;
-     }}
     else {
   await message.reply(getReply(message, randomtag));
       return;
