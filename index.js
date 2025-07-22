@@ -174,7 +174,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
     await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
   }
      else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
-          await message.reply(`Kết bạn đi: DoraemonFacebook#8226);
+          await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
      }
      else if(['xin','muon'].some(w => content.includes(w))){
          if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
