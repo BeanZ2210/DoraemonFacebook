@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
-const { askGemini } = require('./gemini');
+const { askAI } = require('./huggingface');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
@@ -179,42 +179,17 @@ const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
-  // ✅ Tìm URL Facebook trong tin nhắn
- const urlMatch = message.content.match(/https?:\/\/(?:www\.)?facebook\.com\/[^\s]+/i);
-const url = urlMatch ? urlMatch[0] : null;
+	
 
+   if (content.startsWith("!ask ")) {
+    const prompt = content.slice(5).trim();
+    if (!prompt) return message.reply("Hỏi gì nói đi,sao mà cứ ngại");
 
-  if (url) {
-
-    try {
-      await ytdlp(url, {
-        output: 'fb_video.mp4',
-        format: 'best[ext=mp4]/best',
-      });
-
-      if (!fs.existsSync('fb_video.mp4')) {
-
-      }
-
-      const stats = fs.statSync('fb_video.mp4');
-      const fileSizeMB = stats.size / (1024 * 1024);
-
-      if (fileSizeMB <= 24.5) {
-        await message.channel.send({ files: ['fb_video.mp4'] });
-      } else {
-        fs.unlinkSync('fb_video.mp4');
-      }
-
-      fs.unlinkSync('fb_video.mp4');
-    } catch (err) {
-    }
+    await message.channel.sendTyping(); // hiện trạng thái "đang gõ"
+    const reply = await askAI(prompt);
+    message.reply(reply);
   }
-  if (message.content.startsWith('!ask ')) {
-    const prompt = message.content.slice(5).trim();
-    const reply = await askGemini(prompt);
-    await message.reply(reply);
-  }
-  else if (message.attachments.size > 0) {
+   else if (message.attachments.size > 0) {
     const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
 
     if (hasImage) {
@@ -337,6 +312,38 @@ await message.reply(randomtagvar);
   return;
 }
 
+
+
+  // ✅ Tìm URL Facebook trong tin nhắn
+  const url = content.split(/\s+/).find(word =>
+    word.includes('facebook.com') || word.includes('fb.watch')
+  );
+
+  if (url) {
+
+    try {
+      await ytdlp(url, {
+        output: 'fb_video.mp4',
+        format: 'best[ext=mp4]/best',
+      });
+
+      if (!fs.existsSync('fb_video.mp4')) {
+
+      }
+
+      const stats = fs.statSync('fb_video.mp4');
+      const fileSizeMB = stats.size / (1024 * 1024);
+
+      if (fileSizeMB <= 24.5) {
+        await message.channel.send({ files: ['fb_video.mp4'] });
+      } else {
+        fs.unlinkSync('fb_video.mp4');
+      }
+
+      fs.unlinkSync('fb_video.mp4');
+    } catch (err) {
+    }
+  }
 });
 
 
