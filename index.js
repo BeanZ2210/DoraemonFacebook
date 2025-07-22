@@ -310,9 +310,9 @@ await message.reply(randomtagvar);
 
 
   // ✅ Tìm URL Facebook trong tin nhắn
-  const url = content.split(/\s+/).find(word =>
-    word.includes('facebook.com') || word.includes('fb.watch')
-  );
+ const urlMatch = message.content.match(/https?:\/\/(?:www\.)?facebook\.com\/[^\s]+/i);
+const url = urlMatch ? urlMatch[0] : null;
+
 
   if (url) {
 
