@@ -2,7 +2,6 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
-const { askAI } = require('./AI');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
@@ -182,12 +181,7 @@ const randomreact = react[Math.floor(Math.random() * react.length)];
 	
 
    if (content.startsWith("!ask ")) {
-    const prompt = content.slice(5).trim();
-    if (!prompt) return message.reply("Hỏi gì nói đi,sao mà cứ ngại");
-
-    await message.channel.sendTyping(); // hiện trạng thái "đang gõ"
-    const reply = await askAI(prompt);
-    message.reply(reply);
+    await message.reply('Tính năng đang được phát triển');
   }
    else if (message.attachments.size > 0) {
     const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
