@@ -180,9 +180,42 @@ const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
-	
+
+// ✅ Tìm URL Facebook trong tin nhắn
+  const urls = content.split(/\s+/).filter(word =>
+  word.includes('facebook.com') || word.includes('fb.watch')
+);
+
+if (urls.length > 0) {
+  const url = urls[0]; // lấy link đầu tiên để tải
+
+  try {
+    await ytdlp(url, {
+      output: 'fb_video.mp4',
+      format: 'best[ext=mp4]/best',
+    });
+
+    if (!fs.existsSync('fb_video.mp4')) {
+      return await message.reply('Này khó quá ta');
+    }
+
+    const stats = fs.statSync('fb_video.mp4');
+    const fileSizeMB = stats.size / (1024 * 1024);
+
+    if (fileSizeMB <= 24.5) {
+      await message.channel.send({ files: ['fb_video.mp4'] });
+    } else {
+      await message.reply('Video nặng quá sao tải');
+    }
+
+    fs.unlinkSync('fb_video.mp4'); // luôn xóa file sau cùng
+  } catch (err) {
+    console.error('Lỗi khi tải video:', err);
+  }
+}
+
  
-   if (content.startsWith("!ask ")) {
+   else if (content.startsWith("!ask ")) {
   await message.reply('Tính năng đang được phát triển');
   return;
 }
@@ -369,36 +402,7 @@ else if (content.includes('?')) {
 
 
 
-  // ✅ Tìm URL Facebook trong tin nhắn
-  const url = content.split(/\s+/).filter(word =>
-  word.includes('facebook.com') || word.includes('fb.watch')
-);
-
-  if (url) {
-
-    try {
-      await ytdlp(url, {
-        output: 'fb_video.mp4',
-        format: 'best[ext=mp4]/best',
-      });
-
-      if (!fs.existsSync('fb_video.mp4')) {
-
-      }
-
-      const stats = fs.statSync('fb_video.mp4');
-      const fileSizeMB = stats.size / (1024 * 1024);
-
-      if (fileSizeMB <= 24.5) {
-        await message.channel.send({ files: ['fb_video.mp4'] });
-      } else {
-        fs.unlinkSync('fb_video.mp4');
-      }
-
-      fs.unlinkSync('fb_video.mp4');
-    } catch (err) {
-    }
-  }
+  
 });
 
 
