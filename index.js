@@ -27,7 +27,7 @@ client.on('messageCreate', async (message) => {
   const hasThreeDigits = /\d{3}/.test(message.content);
   const content = message.content.toLowerCase();
   const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+(?:k)?)/);
-  const mentioned = message.mentions.users.first();
+  const mentioned = message.mentions.members.first();
   const senderName = message.member?.nickname || message.author.username;
   function getName(message) {
   return message.member?.nickname || message.author.username;
@@ -158,13 +158,15 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   }
 
   if (mentioned && mentioned.id !== client.user.id) {
-    const targetName = mentioned.nickname || mentioned.user.username;
+    const targetName = mentioned.nickname || mentioned?.user.username || 'ai đó';
     await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${getName(message)}!`);
     return;
   } else {
     await message.reply(`💸 Đã chuyển cho ${getName(message)} số tiền ${amount}`);
     return;
   }
+
+    return;
 }
     
   else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
