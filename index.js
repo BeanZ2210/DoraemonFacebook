@@ -190,7 +190,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
          await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
            return;
      }}
-  else if (/[a-zA-Z]{3}\d{3}/.test(message.content) ) {
+  else if (['111','123','444','256','666'].some(w => content.includes(w))) {
     await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
     return;
   }
