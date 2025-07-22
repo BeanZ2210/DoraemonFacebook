@@ -160,34 +160,43 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   if (mentioned && mentioned.id !== client.user.id) {
     const targetName = mentioned.nickname || mentioned.user.username;
     await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${getName(message)}!`);
+    return;
   } else {
     await message.reply(`💸 Đã chuyển cho ${getName(message)} số tiền ${amount}`);
+    return;
   }
 }
+    
   else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchao));
+    return;
 }
+    
   else if (message.mentions.has(client.user) || message.content.toLowerCase().includes('doraemon')) {
       if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagvar));
+        return;
 }
    else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagv));
+     return;
 }  
-    else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
-    await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
-  }
-     else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
+  else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
           await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
+    return;
      }
-     else if(['xin','muon','mượn'].some(w => content.includes(w))){
+  else if(['xin','muon','mượn'].some(w => content.includes(w))){
          if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
-         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);
-         
+         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
+           return;
      }}
-     
+  else if (/[a-zA-Z]{3}\d{3}/.test(message.content) ) {
+    await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
+    return;
+  }
     else {
   await message.reply(getReply(message, randomtag));
+      return;
 }
 }
   //---------
@@ -197,9 +206,11 @@ else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
 else if (message.content === '!info') {
   const formatted = info.join('\n');
   await message.channel.send(formatted);
+  return;
 }
 else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchui));
+  return;
 }
  else if (content.includes('ngu')) {
   await message.reply(getReply(message, randomNgu));
@@ -211,9 +222,11 @@ else if (['gg', 'GG', 'Gg'].some(w => content.includes(w))) {
 }
 else if (['zo','Zo','do','Do','vao','zao','go'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomVo));
+  return;
 }
 else if (['ACE','hay'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomKhen));
+  return;
 }
 else if (content.includes('momo') || content.includes('ck')) {
   await message.reply(`Doraemon đã chuyển cho ${message.author.username} 20k ăn sáng`);
