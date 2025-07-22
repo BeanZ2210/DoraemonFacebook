@@ -194,7 +194,7 @@ else if (message.content === '!info') {
   const formatted = info.join('\n');
   await message.channel.send(formatted);
 }
-else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(ư))) {
+else if(['vlk','cmm','dm','xl','memay','fuck','shut'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchui));
 }
  else if (content.includes('ngu')) {
