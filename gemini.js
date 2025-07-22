@@ -9,8 +9,9 @@ if (!process.env.GEMINI_API_KEY) {
 }
 
 // Khởi tạo GoogleGenerativeAI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY, {
+  apiVersion: 'v1'
+});
 // Hàm gọi Gemini AI
 async function askGemini(prompt) {
   try {
