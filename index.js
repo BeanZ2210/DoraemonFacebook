@@ -33,7 +33,10 @@ client.on('messageCreate', async (message) => {
   function getName(message) {
   return message.member?.nickname || message.author.username;
 }
-
+const doraemonNames = [
+  'doraemon', 'dora', 'mon', 'đô', 'đôrêmon', 'dôra', 'dorae', 'doemon','chồn','đô ra ê mon','đô rê mon','mèo ú','robot mèo'
+];
+  
 const chao=[
   (message) => `Hello! ${getName(message)}`,
   (message) => `Chào! ${getName(message)}`,
@@ -96,6 +99,7 @@ const chao=[
         "Xin cái hẹn",
         "~Pew ~Pew",
         "Thua cái đổi thừa"
+        "Hôi lông",
       ];
     const loikhuyen = [
   'Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết',
@@ -175,7 +179,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
     return;
 }
     
-  else if (message.mentions.has(client.user) || message.content.toLowerCase().includes('doraemon')) {
+  else if (message.mentions.has(client.user) || doraemonNames.some(name => content.includes(name))) {
       if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagvar));
         return;
