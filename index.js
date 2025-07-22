@@ -119,7 +119,7 @@ const chao=[
      'いちばんいけないのは じぶんなんかだめだと思いこむことだよ',
 ];
   const info=[
-    'Xin chào đây là Doraemon mang mã số VN8226 đến từ Vietnam'
+    'Xin chào đây là Doraemon mang mã số VN8226 đến từ Vietnam',
     'Chiều cao: 129,3 cm',
     'Cân nặng: 129,3 kg',
     'Nhảy cao: 129,3 cm (khi thấy chuột)',
