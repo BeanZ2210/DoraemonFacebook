@@ -177,7 +177,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
   await message.reply(getReply(message, randomtagvar));
         return;
 }
-   else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
+   else if (['zo','Zo','vo','gou','vao','zao','go','may','m'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagv));
      return;
 }  
@@ -190,10 +190,6 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
          await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);      
            return;
      }}
-  else if (['111','123','444','256','666'].some(w => content.includes(w))) {
-    await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
-    return;
-  }
     else {
   await message.reply(getReply(message, randomtag));
       return;
