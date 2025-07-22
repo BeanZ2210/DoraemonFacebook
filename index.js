@@ -153,7 +153,7 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
     amount = `${parseInt(amount) / 1000}k`;
   }
 
-  if (mentionedMember && mentionedMember.id !== client.user.id) {
+  if (mentioned && mentioned.id !== client.user.id) {
     const targetName = mentioned.nickname || mentioned.user.username;
     await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${senderName}!`);
   } else {
