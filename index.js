@@ -29,17 +29,21 @@ client.on('messageCreate', async (message) => {
   const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+(?:k)?)/);
   const mentioned = message.mentions.users.first();
   const senderName = message.member?.nickname || message.author.username;
+  function getName(message) {
+  return message.member?.nickname || message.author.username;
+}
+
 const chao=[
-  (message) => `Hello! ${message.author.username}`,
-  (message) => `Chào! ${message.author.username}`,
-  (message) => `Hi! ${message.author.username}`,
-  (message) => `Hí lâu ní ${message.author.username}`,
+  (message) => `Hello! ${getName(message)}`,
+  (message) => `Chào! ${getName(message)}`,
+  (message) => `Hi! ${getName(message)}`,
+  (message) => `Hí lâu ní ${getName(message)}`,
   "Vui nhỉ :>",
   "Chắc là lần đầu mình gặp mặt!",
   "Lâu rồi không gặp!",
 ];
   const vao=[
-    (message) => `Zô dới ${message.author.username} kìa mấy ní`,
+    (message) => `Zô dới ${getName(message)} kìa mấy ní`,
     "Doraemon tới chơi chung nè",
     "Zô đâu dậy!",
     "Cho chơi ké đi",
@@ -50,7 +54,7 @@ const chao=[
     const ngu=[
     "Good night luôn!",
     "Buồn rồi chứ gì :>",
-    (message) => `${message.author.username} ngu quai`,
+    (message) => `${getName(message)} ngu quai`,
     "Ngủ đi khuya lắm rồi!",
   ];
     const gg=[
@@ -72,8 +76,8 @@ const chao=[
   ];
     const troll=[
       "Hay là mình giao lưu tí đi",
-     (message) => `Ô, chúc mừng ${message.author.username} Top #01 TD`,
-      (message) => `Doraemon > ${message.author.username}`,
+     (message) => `Ô, chúc mừng ${getName(message)} Top #01 TD`,
+      (message) => `Doraemon > ${getName(message)}`,
     ];
     const tag=[
       "Gì á",
@@ -155,9 +159,9 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
 
   if (mentioned && mentioned.id !== client.user.id) {
     const targetName = mentioned.nickname || mentioned.user.username;
-    await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${senderName}!`);
+    await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${getName(message)}!`);
   } else {
-    await message.reply(`💸 Đã chuyển cho ${senderName} số tiền ${amount}`);
+    await message.reply(`💸 Đã chuyển cho ${getName(message)} số tiền ${amount}`);
   }
 }
   else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
@@ -170,13 +174,13 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
    else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagv));
 }  
-    else if (hasThreeDigits) {
+    else if (/[a-zA-Z]{3}\d{3}/.test(message.content) {
     await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
   }
      else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
           await message.reply(`Kết bạn đi: DoraemonFacebook#8226`);
      }
-     else if(['xin','muon'].some(w => content.includes(w))){
+     else if(['xin','muon','mượn'].some(w => content.includes(w))){
          if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
          await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);
          
@@ -187,8 +191,8 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
 }
 }
   //---------
-else if (hasThreeDigits) {
-    await message.reply(`Zô dới ${message.author.username} kìa mấy ní`);
+else if (/[a-zA-Z]{3}\d{3}/.test(message.content)) {
+    await message.reply(`Zô dới ${getName(message)} kìa mấy ní`);
   }
 else if (message.content === '!info') {
   const formatted = info.join('\n');
