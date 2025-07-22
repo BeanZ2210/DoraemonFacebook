@@ -26,7 +26,7 @@ client.on('messageCreate', async (message) => {
 }
   const hasThreeDigits = /\d{3}/.test(message.content);
   const content = message.content.toLowerCase();
-  const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+k?)/);
+  const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+(?:k)?)/);
   const mentioned = message.mentions.users.first();
   const senderName = message.member?.nickname || message.author.username;
 const chao=[
