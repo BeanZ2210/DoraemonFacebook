@@ -97,6 +97,8 @@ const chao=[
       "Muốn gặp Dorami hả",
       "Đời tôi cô đơn nên yêu ai cũng cô đơn",
       "Mượn bảo bối gì nà",
+      "Tới công chuyện",
+      "Lương tháng này hơi ít",
     ];
     const tagvo=[
         "Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai",
@@ -105,9 +107,10 @@ const chao=[
         "Muốn sao đây",
         "Đổ xăng hay đổ máu",
         "Xin cái hẹn",
-        "~Pew ~Pew",
+        "Khứa này cay",
         "Thua cái đổi thừa",
         "Hôi lông",
+        "Vờ lờ",
       ];
     const loikhuyen = [
   'Hãy tưởng tượng bạn là 1 dấu "." vì cho dù bạn không làm được gì thì bạn vẫn có thể . hết',
@@ -134,6 +137,10 @@ const chao=[
      'Không có gì phải buồn',
      'Vô địch',
      'いちばんいけないのは じぶんなんかだめだと思いこむことだよ',
+     'Vãi',
+     'Tôi thích Xuka',
+     'Đôi khi anh ước',
+     'Chaien Gây',
 ];
   const info=[
     'Xin chào đây là Doraemon mang mã số VN8226 đến từ Vietnam',
