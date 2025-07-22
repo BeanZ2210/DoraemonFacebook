@@ -2,11 +2,16 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
-const { askAI } = require('./AI);
+const { askAI } = require('./AI');
 
+let messageCount = 0;
+let nextEmojiAt = getRandomInterval();
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
 app.listen(3000, () => console.log('🌐 Web server running.'));
+function getRandomInterval() {
+  return Math.floor(Math.random() * (13 - 5 + 1)) + 5; // Từ 5 đến 13
+}
 
 const client = new Client({
   intents: [
@@ -25,6 +30,7 @@ client.on('messageCreate', async (message) => {
   if (message.content === '!stopbot' && message.author.id === '627375595487232002') {
   process.exit(0); // Dừng chương trình Node.js
 }
+	messageCount++;
   const hasThreeDigits = /\d{3}/.test(message.content);
   const match = message.content.toLowerCase().match(/^(do+|vo+|zo+\^?|vao+)$/);
   const content = message.content.toLowerCase();
@@ -32,7 +38,7 @@ client.on('messageCreate', async (message) => {
   const mentioned = message.mentions.members.first();
   const senderName = message.member?.nickname || message.author.username;
   const isQuestion = content.endsWith('?') || content.includes(' không') || content.includes(' à') || content.includes(' hả') || content.includes(' ha') || content.includes(' khong' || content.includes(' 0') || content.includes(' ko'));
-  function getName(message) {
+	function getName(message) {
   return message.member?.nickname || message.author.username;
 }
 const doraemonNames = [
@@ -180,6 +186,17 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
 	
+   if (messageCount >= nextEmojiAt) {
+    messageCount = 0;
+    nextEmojiAt = getRandomInterval(); // Đặt lại mốc tiếp theo
+
+    // Lấy emoji ngẫu nhiên từ server
+    const emojis = message.guild.emojis.cache.map(e => e.toString());
+    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // Gửi emoji (nếu không có emoji thì gửi emoji mặc định)
+    await message.channel.send(randomEmoji || "😊");
+  }
 
    if (content.startsWith("!ask ")) {
     const prompt = content.slice(5).trim();
