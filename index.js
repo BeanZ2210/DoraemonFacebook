@@ -26,6 +26,9 @@ client.on('messageCreate', async (message) => {
 }
   const hasThreeDigits = /\d{3}/.test(message.content);
   const content = message.content.toLowerCase();
+  const moneyMatch = content.match(/\b(cho|xin|muon|mượn)\s+(\d+k?)/);
+  const mentioned = message.mentions.users.first();
+  const senderName = message.member?.nickname || message.author.username;
 const chao=[
   (message) => `Hello! ${message.author.username}`,
   (message) => `Chào! ${message.author.username}`,
@@ -75,7 +78,8 @@ const chao=[
     const tag=[
       "Gì á",
       "Quát đu du quăn",
-      "Muốn gặp Dorami hả","Đời tôi cô đơn nên yêu ai cũng cô đơn",
+      "Muốn gặp Dorami hả",
+      "Đời tôi cô đơn nên yêu ai cũng cô đơn",
       "Mượn bảo bối gì nà",
     ];
     const tagvo=[
@@ -141,11 +145,25 @@ const randomloikhuyen = loikhuyen[Math.floor(Math.random() * loikhuyen.length)];
 const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 
-  if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
+  if (moneyMatch) {
+  let amount = moneyMatch[2];
+
+  if (!amount.includes('k') && parseInt(amount) >= 1000) {
+    amount = `${parseInt(amount) / 1000}k`;
+  }
+
+  if (mentionedMember && mentionedMember.id !== client.user.id) {
+    const targetName = mentioned.nickname || mentioned.user.username;
+    await message.channel.send(`💸 ${targetName} vừa bị xin ${amount} từ ${senderName}!`);
+  } else {
+    await message.reply(`💸 Đã chuyển cho ${senderName} số tiền ${amount}`);
+  }
+}
+  else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomchao));
 }
   else if (message.mentions.has(client.user) || message.content.toLowerCase().includes('doraemon')) {
-      if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà'].some(w => content.includes(w))) {
+      if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
   await message.reply(getReply(message, randomtagvar));
 }
    else if (['zo','Zo','do','Do','vao','zao','go','may','m'].some(w => content.includes(w))) {
@@ -154,8 +172,16 @@ const randomchui = chui[Math.floor(Math.random() * chui.length)];
     else if (hasThreeDigits) {
     await message.reply(`Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai`);
   }
-    
-    else  {
+     else if (['valo','valorant','valỏ','game'].some(w => content.includes(w))){
+          await message.reply(`Kết bạn đi: DoraemonFacebook#8226);
+     }
+     else if(['xin','muon'].some(w => content.includes(w))){
+         if(['valo','valorant','valỏ','acc'].some(w => content.includes(w))){
+         await message.reply(`Username: Doraemon8226 , Password: DoraemonFacebookBot8226`);
+         
+     }}
+     
+    else {
   await message.reply(getReply(message, randomtag));
 }
 }
