@@ -3,6 +3,7 @@ const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
 const { handleCommand } = require('./audio');
+const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
@@ -219,7 +220,14 @@ if (urls.length > 0) {
 	if(content.startsWith("!music")){
 	await message.reply('!play <link> | !pause | !resume | !playlist | !skip | !stop');
         }
-    else await handleCommand(message);
+		
+
+    else{
+	    
+		const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
+	   	play.setCookie(cookies);
+	    	await handleCommand(message);
+   }
   }
    else if (content.startsWith("!ask ")) {
   await message.reply('Tính năng đang được phát triển');
