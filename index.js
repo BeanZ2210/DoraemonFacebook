@@ -216,7 +216,7 @@ if (urls.length > 0) {
 }
 
    else if (message.content.startsWith('!')) {
-	if(content,startsWith("!music")){
+	if(content.startsWith("!music")){
 	await message.reply('!play <link> | !pause | !resume | !playlist | !skip | !stop');
         }
     else await handleCommand(message);
