@@ -15,11 +15,12 @@ const fs = require('fs');
 const player = createAudioPlayer({ behaviors: { noSubscriber: NoSubscriberBehavior.Pause } });
 const queueMap = new Map(); // key: guildId, value: array of song URLs
 const connectionMap = new Map(); // key: guildId, value: voice connection
-
-(async () => {
-  const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
-  await play.setToken(cookies);
-})();
+const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
+play.setToken({
+  youtube: {
+    cookie: raw_cookie
+  }
+  
 async function streamNext(guildId, channel, textChannel) {
   const queue = queueMap.get(guildId);
   if (!queue || queue.length === 0) {
