@@ -282,7 +282,7 @@ else if (message.mentions.has(client.user) || doraemonNames.some(name => content
     await message.reply(getReply(message, randomtagvar));
     return;
   }
-	else if (['hả','dạ','đúng rồi','ừ','ờ','đâu','dau','dr'].includes(content.trim().toLowerCase())) {
+	else if (['hả','dạ','đúng rồi','ừ','ờ','đâu','dau','dr'].some(w => content.includes(w))) {
   await delay(500);
   await message.reply(getReply(message, randomAnswer2));
   return;
