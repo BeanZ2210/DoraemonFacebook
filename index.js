@@ -93,8 +93,10 @@ const chao=[
       "Gì á",
       "Quát đu du quăn",
       "Muốn gặp Dorami hả",
-      "Đời tôi cô đơn nên yêu ai cũng cô đơn",
       "Mượn bảo bối gì nà",
+      "Hả",
+      "Khó nói",
+      "Kì",
     ];
     const tagvo=[
         "Mon không có máy tính , đang lấy video facebook cho mấy khứa để kiếm tí tiền , hay là ủng hộ xíu đi https://playerduo.net/nayurai",
@@ -166,6 +168,13 @@ const chao=[
   "Còn phần 2 không",
   "Thật tuyệt",
 ];
+  const answer2 = [
+   "Kìa",
+   "Mai đi",
+   "Hông biết",
+   "Ở nhà",
+   "Đó",
+];
   function getReply(message, item) {
   return typeof item === 'function' ? item(message) : item;
 }
@@ -183,6 +192,7 @@ const randomtagvar = tagvar[Math.floor(Math.random() * tagvar.length)];
 const randomchui = chui[Math.floor(Math.random() * chui.length)];
 const randomAnswer = answer[Math.floor(Math.random() * answer.length)];
 const randomreact = react[Math.floor(Math.random() * react.length)];
+const randomAnswer2 = answer2[Math.floor(Math.random() * answer2.length)];
 
 // ✅ Tìm URL Facebook trong tin nhắn
   const urls = content.split(/\s+/).filter(word =>
@@ -272,6 +282,13 @@ else if (message.mentions.has(client.user) || doraemonNames.some(name => content
     await message.reply(getReply(message, randomtagvar));
     return;
   }
+	else if (['hả','dạ','đúng rồi','ừ','ờ','đâu','dau','dr'].includes(content.trim().toLowerCase())) {
+  await delay(500);
+  await message.reply(getReply(message, randomAnswer2));
+  return;
+}
+
+
 
   else if (match) {
 	  await delay(500);
