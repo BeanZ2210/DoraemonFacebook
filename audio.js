@@ -70,7 +70,8 @@ async function handleCommand(message) {
   const { content, member, guild, channel } = message;
   const voiceChannel = member.voice.channel;
   const guildId = guild.id;
-
+  const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
+  play.setCookie(cookies);
   if (content.startsWith('!play ')) {
     const url = content.slice(6).trim();
     if (!voiceChannel) return message.reply('Vào kênh đi ní');
