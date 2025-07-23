@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
 const express = require('express');
+const { handleCommand } = require('./audio');
 
 const app = express();
 app.get('/', (req, res) => res.send('Bot is alive!'));
@@ -214,7 +215,12 @@ if (urls.length > 0) {
   }
 }
 
- 
+   else if (message.content.startsWith('!')) {
+	if(content,startsWith("!music")){
+	await message.reply('!play <link> | !pause | !resume | !playlist | !skip | !stop');
+        }
+    else await handleCommand(message);
+  }
    else if (content.startsWith("!ask ")) {
   await message.reply('Tính năng đang được phát triển');
   return;
@@ -223,7 +229,7 @@ if (urls.length > 0) {
 else if (message.attachments.size > 0) {
   const hasImage = message.attachments.some(att => att.contentType?.startsWith('image/'));
   if (hasImage) {
-	  await delay(2000);
+	  await delay(500);
     await message.reply(randomreact);
     return;
   }
