@@ -255,7 +255,7 @@ else if (['hi', 'hello', 'chào', 'yo', 'ping' , 'chao'].includes(content.trim()
 
 else if (message.mentions.has(client.user) || doraemonNames.some(name => content.includes(name))) {
 	await message.channel.sendTyping();
-  if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa'].some(w => content.includes(w))) {
+  if (['ngu', 'ga', 'non', 'noob', 'ngoc', 'ngok', 'chicken', 'gà' , 'tai', 'tại' , 'kia' ,'kìa','vl','cc','lol','khùng'].some(w => content.includes(w))) {
 	  await delay(1000);
     await message.reply(getReply(message, randomtagvar));
     return;
