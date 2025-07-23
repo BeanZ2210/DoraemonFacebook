@@ -224,9 +224,6 @@ if (urls.length > 0) {
 		
 
     else{
-	    
-		const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
-	   	play.setCookie(cookies);
 	    	await handleCommand(message);
    }
   }
