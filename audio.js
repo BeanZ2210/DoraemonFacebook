@@ -10,12 +10,16 @@ const {
 } = require('@discordjs/voice');
 
 const play = require('play-dl');
-
+const fs = require('fs');
 // Khởi tạo player và queue toàn cục
 const player = createAudioPlayer({ behaviors: { noSubscriber: NoSubscriberBehavior.Pause } });
 const queueMap = new Map(); // key: guildId, value: array of song URLs
 const connectionMap = new Map(); // key: guildId, value: voice connection
 
+(async () => {
+  const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
+  await play.setCookie(cookies);
+})();
 async function streamNext(guildId, channel, textChannel) {
   const queue = queueMap.get(guildId);
   if (!queue || queue.length === 0) {
@@ -70,8 +74,6 @@ async function handleCommand(message) {
   const { content, member, guild, channel } = message;
   const voiceChannel = member.voice.channel;
   const guildId = guild.id;
-  const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
-  play.setCookie(cookies);
   if (content.startsWith('!play ')) {
     const url = content.slice(6).trim();
     if (!voiceChannel) return message.reply('Vào kênh đi ní');
