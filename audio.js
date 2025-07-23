@@ -18,7 +18,7 @@ const connectionMap = new Map(); // key: guildId, value: voice connection
 
 (async () => {
   const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
-  await play.setCookie(cookies);
+  await play.setToken(cookies);
 })();
 async function streamNext(guildId, channel, textChannel) {
   const queue = queueMap.get(guildId);
