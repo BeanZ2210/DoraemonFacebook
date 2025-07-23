@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const ytdlp = require('yt-dlp-exec');
 const fs = require('fs');
+const play = require('play-dl');
 const express = require('express');
 const { handleCommand } = require('./audio');
 const cookies = fs.readFileSync('./yt_cookies.txt', 'utf-8');
